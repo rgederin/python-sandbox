@@ -66,6 +66,175 @@ type(num)
 # will output <class 'bool'>
 ```
 
+## Strings
+
+In Python, Strings are arrays of bytes representing Unicode characters. However, Python does not have a character data type, a single character is simply a string with a length of 1. Square brackets can be used to access elements of the string.
+
+### Creating a String
+
+Strings in Python can be created using single quotes or double quotes or even triple quotes.
+
+```
+# Creating a String 
+# with single Quotes
+String1 = 'Welcome to the Geeks World'
+print("String with the use of Single Quotes: ")
+print(String1)  # Welcome to the Geeks World
+  
+# Creating a String
+# with double Quotes
+String1 = "I'm a Geek"
+print("\nString with the use of Double Quotes: ")
+print(String1) # I'm a Geek
+  
+# Creating a String
+# with triple Quotes
+String1 = '''I'm a Geek and I live in a world of "Geeks"'''
+print("\nString with the use of Triple Quotes: ")
+print(String1)
+  
+# Creating String with triple
+# Quotes allows multiple lines
+String1 = '''Geeks
+            For
+            Life'''
+print("\nCreating a multiline String: ")
+print(String1) # Geeks
+            For
+            Life
+```
+
+### Accessing characters in Python
+
+In Python, individual characters of a String can be accessed by using the method of Indexing. Indexing allows negative address references to access characters from the back of the String, e.g. -1 refers to the last character, -2 refers to the second last character and so on.
+
+While accessing an index out of the range will cause an IndexError. Only Integers are allowed to be passed as an index, float or other types will cause a TypeError.
+
+![data](https://github.com/rgederin/python-sandbox/blob/master/img/strings.jpeg)
+
+```
+String1 = "GeeksForGeeks"
+print("Initial String: ")
+print(String1) # GeeksForGeeks
+  
+# Printing First character
+print("\nFirst character of String is: ")
+print(String1[0]) # G
+  
+# Printing Last character
+print("\nLast character of String is: ")
+print(String1[-1]) # s
+```
+
+### String Slicing
+
+To access a range of characters in the String, method of slicing is used. Slicing in a String is done by using a Slicing operator (colon).
+
+```
+# Creating a String
+String1 = "GeeksForGeeks"
+print("Initial String: ") 
+print(String1) # GeeksForGeeks
+  
+# Printing 3rd to 12th character
+print("\nSlicing characters from 3-12: ")
+print(String1[3:12]) # ksForGeek
+  
+# Printing characters between 
+# 3rd and 2nd last character
+print("\nSlicing characters between " +
+    "3rd and 2nd last character: ")
+print(String1[3:-2]) # ksForGee
+```
+
+### Deleting/Updating from a String
+
+In Python, Updation or deletion of characters from a String is not allowed. This will cause an error because item assignment or item deletion from a String is not supported. Although deletion of entire String is possible with the use of a built-in del keyword. This is because Strings are immutable, hence elements of a String cannot be changed once it has been assigned. Only new strings can be reassigned to the same name.
+
+Updation of a character:
+
+```
+String1 = "Hello, I'm a Geek"
+print("Initial String: ")
+print(String1)
+  
+# Updating a character 
+# of the String
+String1[2] = 'p'
+print("\nUpdating character at 2nd Index: ")
+print(String1)
+```
+
+Error:
+
+```
+Traceback (most recent call last):
+File “/home/360bb1830c83a918fc78aa8979195653.py”, line 10, in
+String1[2] = ‘p’
+TypeError: ‘str’ object does not support item assignment
+```
+
+Updating Entire String:
+
+```
+String1 = "Hello, I'm a Geek"
+print("Initial String: ")
+print(String1) # Hello, I'm a Geek
+  
+# Updating a String
+String1 = "Welcome to the Geek World"
+print("\nUpdated String: ")
+print(String1) # Welcome to the Geek World
+```
+
+Deletion of a character:
+
+```
+String1 = "Hello, I'm a Geek"
+print("Initial String: ")
+print(String1)
+  
+# Deleting a character 
+# of the String
+del String1[2] 
+print("\nDeleting character at 2nd Index: ")
+print(String1)
+```
+
+Error:
+
+```
+Traceback (most recent call last):
+File “/home/499e96a61e19944e7e45b7a6e1276742.py”, line 10, in
+del String1[2]
+TypeError: ‘str’ object doesn’t support item deletion
+```
+
+Deleting Entire String:
+
+Deletion of entire string is possible with the use of del keyword. Further, if we try to print the string, this will produce an error because String is deleted and is unavailable to be printed.
+
+```
+String1 = "Hello, I'm a Geek"
+print("Initial String: ")
+print(String1)
+  
+# Deleting a String
+# with the use of del
+del String1 
+print("\nDeleting entire String: ")
+print(String1)
+```
+
+Error:
+
+```
+Traceback (most recent call last):
+File “/home/e4b8f2170f140da99d2fe57d9d8c6a94.py”, line 12, in
+print(String1)
+NameError: name ‘String1’ is not define
+```
+
 ## Lists
 
 A list is an array that is **mutable** and **ordered**, with **duplicates allowed**. This means that it has indexes, just like Strings. You can declare different data types inside a list. 
