@@ -3,6 +3,12 @@ Sandbox repo for playing with python
 
 # Table of content
 
+- [Core data types in Python](#core-data-types-in-python)
+    * [Numbers](#numbers)
+    * [Boolean](#boolean)
+    * [Strings](#stringss)
+    * [Lists](#lists)
+
 # Core data types in Python
 
 There are 6 data types in Python and they are:
@@ -19,8 +25,6 @@ There are 6 data types in Python and they are:
 ![data](https://github.com/rgederin/python-sandbox/blob/master/img/dt.png)
 
 ![data](https://github.com/rgederin/python-sandbox/blob/master/img/dt2.jpeg)
-
-
 
 
 There is one more data type called Range — but that is mainly used when we are iterating through values such as in for loops.
