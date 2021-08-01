@@ -16,6 +16,12 @@ There are 6 data types in Python and they are:
 
 ![data](https://github.com/rgederin/python-sandbox/blob/master/img/types.jpeg)
 
+![data](https://github.com/rgederin/python-sandbox/blob/master/img/dt.png)
+
+![data](https://github.com/rgederin/python-sandbox/blob/master/img/dt2.jpeg)
+
+
+
 
 There is one more data type called Range — but that is mainly used when we are iterating through values such as in for loops.
 
@@ -559,3 +565,364 @@ print (odd_square) # [1, 9, 25, 49, 81]
 ### List performnce 
 
 ![data](https://github.com/rgederin/python-sandbox/blob/master/img/list-perf.png)
+
+## Tuple
+
+Tuple is a collection of Python objects much like a list. The sequence of values stored in a tuple can be of any type, and they are indexed by integers. 
+
+Values of a tuple are syntactically separated by ‘commas’. Although it is not necessary, it is more common to define a tuple by closing the sequence of values in parentheses. This helps in understanding the Python tuples more easily.
+
+### Creating a Tuple
+
+In Python, tuples are created by placing a sequence of values separated by ‘comma’ with or without the use of parentheses for grouping the data sequence.
+ 
+
+Note: Creation of Python tuple without the use of parentheses is known as Tuple Packing. 
+
+```
+#Creating an empty Tuple
+Tuple1 = ()
+print("Initial empty Tuple: ")
+print (Tuple1) # ()
+ 
+#Creating a Tuple
+#with the use of string
+Tuple1 = ('Geeks', 'For')
+print("\nTuple with the use of String: ")
+print(Tuple1) # ('Geeks', 'For')
+ 
+# Creating a Tuple with
+# the use of list
+list1 = [1, 2, 4, 5, 6]
+print("\nTuple using List: ")
+print(tuple(list1)) # (1, 2, 4, 5, 6)
+ 
+#Creating a Tuple
+#with the use of built-in function
+Tuple1 = tuple('Geeks')
+print("\nTuple with the use of function: ")
+print(Tuple1) # ('G', 'e', 'e', 'k', 's')
+```
+
+### Creating a Tuple with Mixed Datatypes.
+
+Tuples can contain any number of elements and of any datatype (like strings, integers, list, etc.). Tuples can also be created with a single element, but it is a bit tricky. Having one element in the parentheses is not sufficient, there must be a trailing ‘comma’ to make it a tuple.
+
+```
+#Creating a Tuple
+#with Mixed Datatype
+Tuple1 = (5, 'Welcome', 7, 'Geeks')
+print("\nTuple with Mixed Datatypes: ")
+print(Tuple1) # (5, 'Welcome', 7, 'Geeks')
+ 
+#Creating a Tuple
+#with nested tuples
+Tuple1 = (0, 1, 2, 3)
+Tuple2 = ('python', 'geek')
+Tuple3 = (Tuple1, Tuple2)
+print("\nTuple with nested tuples: ")
+print(Tuple3) # ((0, 1, 2, 3), ('python', 'geek'))
+ 
+#Creating a Tuple
+#with repetition
+Tuple1 = ('Geeks',) * 3
+print("\nTuple with repetition: ")
+print(Tuple1) # ('Geeks', 'Geeks', 'Geeks')
+ 
+#Creating a Tuple
+#with the use of loop
+Tuple1 = ('Geeks')
+n = 5
+print("\nTuple with a loop")
+for i in range(int(n)):
+    Tuple1 = (Tuple1,)
+    print(Tuple1) # ('Geeks',)
+                    (('Geeks',),)
+                    ((('Geeks',),),)
+                    (((('Geeks',),),),)
+                    ((((('Geeks',),),),),)
+```
+
+### Accessing of Tuples
+
+Tuples are immutable, and usually, they contain a sequence of heterogeneous elements that are accessed via unpacking or indexing (or even by attribute in the case of named tuples). Lists are mutable, and their elements are usually homogeneous and are accessed by iterating over the list.
+ 
+
+Note: In unpacking of tuple number of variables on the left-hand side should be equal to a number of values in given tuple a.
+
+```
+#Accessing Tuple
+#with Indexing
+Tuple1 = tuple("Geeks")
+print("\nFirst element of Tuple: ")
+print(Tuple1[1]) # e
+ 
+ 
+#Tuple unpacking
+Tuple1 = ("Geeks", "For", "Geeks")
+ 
+#This line unpack
+#values of Tuple1
+a, b, c = Tuple1
+print("\nValues after unpacking: ")
+print(a) # Geeks
+print(b) # For
+print(c) # Geeks
+```
+
+### Concatenation of Tuples
+
+Concatenation of tuple is the process of joining two or more Tuples. Concatenation is done by the use of ‘+’ operator. Concatenation of tuples is done always from the end of the original tuple. Other arithmetic operations do not apply on Tuples. 
+
+Note- Only the same datatypes can be combined with concatenation, an error arises if a list and a tuple are combined. 
+
+```
+# Concatenation of tuples
+Tuple1 = (0, 1, 2, 3)
+Tuple2 = ('Geeks', 'For', 'Geeks')
+ 
+Tuple3 = Tuple1 + Tuple2
+ 
+# Printing first Tuple
+print("Tuple 1: ")
+print(Tuple1)
+ 
+# Printing Second Tuple
+print("\nTuple2: ")
+print(Tuple2)
+ 
+# Printing Final Tuple
+print("\nTuples after Concatenation: ")
+print(Tuple3)
+```
+
+![data](https://github.com/rgederin/python-sandbox/blob/master/img/t1.jpeg)
+
+### Slicing of Tuple
+
+Slicing of a Tuple is done to fetch a specific range or slice of sub-elements from a Tuple. Slicing can also be done to lists and arrays. Indexing in a list results to fetching a single element whereas Slicing allows to fetch a set of elements. 
+Note- Negative Increment values can also be used to reverse the sequence of Tuple
+
+```
+# Slicing of a Tuple
+ 
+# Slicing of a Tuple
+# with Numbers
+Tuple1 = tuple('GEEKSFORGEEKS')
+ 
+# Removing First element
+print("Removal of First Element: ")
+print(Tuple1[1:]) # ('E', 'E', 'K', 'S', 'F', 'O', 'R', 'G', 'E', 'E', 'K', 'S')
+ 
+# Reversing the Tuple
+print("\nTuple after sequence of Element is reversed: ") # ('S', 'K', 'E', 'E', 'G', 'R', 'O', 'F', 'S', 'K', 'E', 'E', 'G')
+print(Tuple1[::-1])
+ 
+# Printing elements of a Range
+print("\nPrinting elements between Range 4-9: ")
+print(Tuple1[4:9]) # ('S', 'F', 'O', 'R', 'G')
+```
+
+![data](https://github.com/rgederin/python-sandbox/blob/master/img/t2.jpeg)
+
+### Deleting a Tuple
+
+Tuples are immutable and hence they do not allow deletion of a part of it. The entire tuple gets deleted by the use of del() method. 
+ 
+Note- Printing of Tuple after deletion results in an Error.
+
+## Set
+
+In Python, Set is an unordered collection of data type that is iterable, mutable and has no duplicate elements. The order of elements in a set is undefined though it may consist of various elements.
+
+The major advantage of using a set, as opposed to a list, is that it has a highly optimized method for checking whether a specific element is contained in the set.
+
+### Creating a Set
+Sets can be created by using the built-in set() function with an iterable object or a sequence by placing the sequence inside curly braces, separated by ‘comma’.
+
+Note – A set cannot have mutable elements like a list, set or dictionary, as its elements. 
+
+```
+# Python program to demonstrate
+# Creation of Set in Python
+ 
+# Creating a Set
+set1 = set()
+print("Initial blank Set: ")
+print(set1)
+ 
+# Creating a Set with
+# the use of a String
+set1 = set("GeeksForGeeks")
+print("\nSet with the use of String: ")
+print(set1)
+ 
+# Creating a Set with
+# the use of Constructor
+# (Using object to Store String)
+String = 'GeeksForGeeks'
+set1 = set(String)
+print("\nSet with the use of an Object: " )
+print(set1)
+ 
+# Creating a Set with
+# the use of a List
+set1 = set(["Geeks", "For", "Geeks"])
+print("\nSet with the use of List: ")
+print(set1)
+```
+
+A set contains only unique elements but at the time of set creation, multiple duplicate values can also be passed. Order of elements in a set is undefined and is unchangeable. Type of elements in a set need not be the same, various mixed up data type values can also be passed to the set. 
+
+```
+# Creating a Set with
+# a List of Numbers
+# (Having duplicate values)
+set1 = set([1, 2, 4, 4, 3, 3, 3, 6, 5])
+print("\nSet with the use of Numbers: ")
+print(set1)
+ 
+# Creating a Set with
+# a mixed type of values
+# (Having numbers and strings)
+set1 = set([1, 2, 'Geeks', 4, 'For', 6, 'Geeks'])
+print("\nSet with the use of Mixed Values")
+print(set1)
+```
+
+### Adding Elements to a Set
+
+Using add() method
+
+Elements can be added to the Set by using built-in add() function. Only one element at a time can be added to the set by using add() method, loops are used to add multiple elements at a time with the use of add() method.
+
+Note – Lists cannot be added to a set as elements because Lists are not hashable whereas Tuples can be added because tuples are immutable and hence Hashable. 
+
+```
+# Python program to demonstrate
+# Addition of elements in a Set
+ 
+# Creating a Set
+set1 = set()
+print("Initial blank Set: ")
+print(set1)
+ 
+# Adding element and tuple to the Set
+set1.add(8)
+set1.add(9)
+set1.add((6,7))
+print("\nSet after Addition of Three elements: ")
+print(set1)
+ 
+# Adding elements to the Set
+# using Iterator
+for i in range(1, 6):
+    set1.add(i)
+print("\nSet after Addition of elements from 1-5: ")
+print(set1)
+```
+
+Using update() method
+
+For addition of two or more elements Update() method is used. The update() method accepts lists, strings, tuples as well as other sets as its arguments. In all of these cases, duplicate elements are avoided.
+
+```
+
+# Python program to demonstrate
+# Addition of elements in a Set
+ 
+# Addition of elements to the Set
+# using Update function
+set1 = set([ 4, 5, (6, 7)])
+set1.update([10, 11])
+print("\nSet after Addition of elements using Update: ")
+print(set1)
+```
+
+### Accessing a Set
+
+Set items cannot be accessed by referring to an index, since sets are unordered the items has no index. But you can loop through the set items using a for loop, or ask if a specified value is present in a set, by using the in keyword.
+
+```
+# Python program to demonstrate
+# Accessing of elements in a set
+   
+# Creating a set
+set1 = set(["Geeks", "For", "Geeks"])
+print("\nInitial set")
+print(set1)
+   
+# Accessing element using
+# for loop
+print("\nElements of set: ")
+for i in set1:
+    print(i, end =" ")
+   
+# Checking the element
+# using in keyword
+print("Geeks" in set1)
+```
+
+## Dictionary
+
+Dictionary in Python is an unordered collection of data values, used to store data values like a map, which unlike other Data Types that hold only single value as an element, Dictionary holds key:value pair. Key-value is provided in the dictionary to make it more optimized. Each key-value pair in a Dictionary is separated by a colon :, whereas each key is separated by a ‘comma’.
+ 
+
+### Creating Dictionary
+
+In Python, a Dictionary can be created by placing a sequence of elements within curly {} braces, separated by ‘comma’. Values in a dictionary can be of any datatype and can be duplicated, whereas keys can’t be repeated and must be immutable. Dictionary can also be created by the built-in function dict(). An empty dictionary can be created by just placing it to curly braces{}.
+Note – Dictionary keys are case sensitive, same name but different cases of Key will be treated distinctly.
+
+```
+# Creating an empty Dictionary
+Dict = {}
+print("Empty Dictionary: ")
+print(Dict)
+   
+# Creating a Dictionary 
+# with Integer Keys
+Dict = {1: 'Geeks', 2: 'For', 3: 'Geeks'}
+print("\nDictionary with the use of Integer Keys: ")
+print(Dict)
+   
+# Creating a Dictionary 
+# with Mixed keys
+Dict = {'Name': 'Geeks', 1: [1, 2, 3, 4]}
+print("\nDictionary with the use of Mixed Keys: ")
+print(Dict)
+   
+# Creating a Dictionary
+# with dict() method
+Dict = dict({1: 'Geeks', 2: 'For', 3:'Geeks'})
+print("\nDictionary with the use of dict(): ")
+print(Dict)
+   
+# Creating a Dictionary
+# with each item as a Pair
+Dict = dict([(1, 'Geeks'), (2, 'For')])
+print("\nDictionary with each item as a pair: ")
+print(Dict)
+```
+
+### Accessing elements of Dictionary
+
+In order to access the items of a dictionary refer to its key name. Key can be used inside square brackets. There is also a method called get() that will also help in accessing the element from a dictionary.
+
+```
+# Python program to demonstrate  
+# accessing a element from a Dictionary 
+   
+# Creating a Dictionary 
+Dict = {1: 'Geeks', 'name': 'For', 3: 'Geeks'}
+   
+# accessing a element using key
+print("Accessing a element using key:")
+print(Dict['name'])
+ 
+# accessing a element using get()
+# method
+print("Accessing a element using get:")
+print(Dict.get(3))
+```
+
+
