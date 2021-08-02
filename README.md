@@ -6,8 +6,16 @@ Sandbox repo for playing with python
 - [Core data types in Python](#core-data-types-in-python)
     * [Numbers](#numbers)
     * [Boolean](#boolean)
-    * [Strings](#stringss)
+    * [Strings](#strings)
     * [Lists](#lists)
+    * [Tuple](#tuple)
+    * [Set](#set)
+    * [Dictionary](#dictionary)
+- [Mutable vs Immutable Objects in Python](#mutable-vs-immutable-objects-in-python)
+    * [ID and TYPE](#id-and-type)
+    * [Mutable and Immutable Objects](#Mutable-and-Immutable-Objects)
+    * [Strings](#strings)
+    * [How objects are passed to functions](#How-objects-are-passed-to-functions)
 
 # Core data types in Python
 
@@ -1038,3 +1046,48 @@ So what have we seen so far from the above examples?
 * Immutable are quicker to access than mutable objects.
 * Mutable objects are great to use when you need to change the size of the object, example list, dict etc.. Immutables are used when you need to ensure that the object you made will always stay the same.
 * Immutable objects are fundamentally expensive to “change”, because doing so involves creating a copy. Changing mutable objects is cheap.
+
+## Exceptions in immutability
+
+Not all of the immutable objects are actually immutable. Confused? Let me explain.
+As discussed earlier, Python containers liked tuples are immutable. That means value of a tuple can't be changed after it is created. But the "value" of a tuple is infact a sequence of names with unchangeable bindings to objects. The key thing to note is that the bindings are unchangeable, not the objects they are bound to.
+
+Let us consider a tuple t = (‘holberton’, [1, 2, 3])
+
+The above tuple t contains elements of different data types, the first one is an immutable string and the second one is a mutable list.The tuple itself isn’t mutable . i.e. it doesn’t have any methods for changing its contents. Likewise, the string is immutable because strings don’t have any mutating methods. But the list object does have mutating methods, so it can be changed. This is a subtle point, but nonetheless important: the “value” of an immutable object can’t change, but it’s constituent objects can.
+
+## How objects are passed to functions
+
+Its important for us to know difference between mutable and immutable types and how they are treated when passed onto functions. Memory efficiency is highly affected when the proper objects are used.
+
+For example if a mutable object is called by reference in a function, it can change the original variable itself. Hence to avoid this, the original variable needs to be copied to another variable. Immutable objects can be called by reference because its value cannot be changed anyways.
+
+```
+def updateList(list1):
+    list1 += [10]
+n = [5, 6]
+
+print(id(n))                  # 140312184155336
+updateList(n)
+
+print(n)                      # [5, 6, 10]
+print(id(n))                  # 140312184155336
+```
+
+As we can see from the above example, we have called the list via call by reference, so the changes are made to the original list itself.
+
+Lets take a look at another example:
+
+```
+def updateNumber(n):
+    print(id(n))
+    n += 10
+b = 5
+print(id(b))                   # 10055680
+updateNumber(b)                # 10055680
+print(b)                       # 5
+```
+
+In the above example the same object is passed to the function, but the variables value doesn’t change even though the object is identical. This is called pass by value. So what is exactly happening here? When the value is called by the function, only the value of the variable is passed, not the object itself. So the variable referencing the object is not changed, but the object itself is being changed but within the function scope only. Hence the change is not reflected.
+
+https://robertheaton.com/2014/02/09/pythons-pass-by-object-reference-as-explained-by-philip-k-dick/
