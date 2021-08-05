@@ -5,6 +5,10 @@ Sandbox repo for playing with python
 
 - [Python package management](#Python-package-management)
     * [Pip](#pip)
+    * [Pipenv](#Pipenv)
+    * [Poetry](#poetry)
+    * [Conda](#conda)
+    * [Highlevel comparison](#Highlevel-comparison)
 - [Core data types in Python](#core-data-types-in-python)
     * [Numbers](#numbers)
     * [Boolean](#boolean)
