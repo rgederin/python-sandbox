@@ -3,6 +3,8 @@ Sandbox repo for playing with python
 
 # Table of content
 
+- [Python package management](#Python-package-management)
+    * [Pip](#pip)
 - [Core data types in Python](#core-data-types-in-python)
     * [Numbers](#numbers)
     * [Boolean](#boolean)
@@ -16,6 +18,79 @@ Sandbox repo for playing with python
     * [Mutable and Immutable Objects](#Mutable-and-Immutable-Objects)
     * [Strings](#strings)
     * [How objects are passed to functions](#How-objects-are-passed-to-functions)
+
+
+# Python package management
+
+For many of the projects you work on, you’ll probably need some number of third-party packages. Those packages may have their own dependencies in turn. In the early days of Python, using packages involved manually downloading files and pointing Python at them. Today, we’re fortunate to have a variety of package management tools available to us.
+
+Most package managers work in tandem with virtual environments, isolating the packages you install in one Python environment from another. Using the two together is where you really start to see the power of the tools available to you.
+
+## Pip
+
+Pip is a package manager for Python. That means it’s a tool that allows you to install and manage additional libraries and dependencies that are not distributed as part of the standard library.
+
+Package management is so important that pip has been included with the Python installer since versions 3.4 for Python 3 and 2.7.9 for Python 2, and it’s used by many Python projects.
+
+The concept of a package manager might be familiar to you if you are coming from other languages. JavaScript uses npm for package management, Ruby uses gem, and .NET use NuGet. In Python, pip has become the standard package manager.
+
+**More about pip:** https://realpython.com/what-is-pip/#getting-started-with-pip
+
+## Pipenv
+
+Pipenv — the officially recommended Python packaging tool from Python.org, free (as in freedom).
+
+Pipenv is a project that aims to bring the best of all packaging worlds to the Python world. It harnesses Pipfile, pip, and virtualenv into one single toolchain. It features very pretty terminal colors. Windows is a first–class citizen, in our world.
+
+It automatically creates and manages a virtualenv for your projects, as well as adds/removes packages from your Pipfile as you install/uninstall packages. The lock command generates a lockfile (Pipfile.lock).
+
+**More about pipenv:** https://docs.pipenv.org/en/latest/
+
+## Poetry
+
+Poetry addresses additional facets of package management, including creating and publishing your own packages. Poetry comes with all the tools you might need to manage your projects in a deterministic way.
+
+**More about poetry:** https://python-poetry.org/docs/
+
+## Conda
+
+With conda, you can use pip to install packages as usual, but you can also use conda install to install packages from different channels, which are collections of packages provided by Anaconda or other providers.
+
+Anaconda is a full distribution of the software in the PyData ecosystem, including Python itself along with binaries for several third-party open-source projects. Besides Anaconda, there’s also Miniconda, which is a minimal Python distribution including basically Conda and its dependencies so that you can install only the packages you need, from scratch
+
+Conda is a package, dependency, and environment management system that could be installed without the Anaconda or Miniconda distribution. It runs on Windows, macOS, and Linux and was created for Python programs, but it can package and distribute software for any language. The main purpose is to solve external dependencies issues in an easy way, by downloading pre-compiled versions of software
+
+**More about conda:** https://docs.conda.io/en/latest/
+
+## Highlevel comparison
+
+https://ahmed-nafies.medium.com/pip-pipenv-poetry-or-conda-7d2398adbac9
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Core data types in Python
 
