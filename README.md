@@ -3,6 +3,9 @@ Sandbox repo for playing with python
 
 # Table of content
 
+- [Python version management](#Python-Version-Management)
+    * [Pyenv](#pyenv)
+    * [Virtual environments and pyenv](#Virtual-environments-and-pyenv)
 - [Python package management](#Python-package-management)
     * [Pip](#pip)
     * [Pipenv](#Pipenv)
@@ -23,6 +26,30 @@ Sandbox repo for playing with python
     * [Strings](#strings)
     * [How objects are passed to functions](#How-objects-are-passed-to-functions)
 
+
+# Python version management
+
+macOS and most Unix operating systems come with a version of Python installed by default. This is often called the system Python. The system Python works just fine, but it’s usually out of date. As of this writing, macOS High Sierra still ships with Python 2.7.10 as the system Python.
+
+It’s important that you leave the system Python as the default, because many parts of the system rely on the default Python being a specific version. This is one of many great reasons to customize your Python environment!
+
+## Pyenv
+
+Pyenv lets you easily switch between multiple versions of Python. It's simple, unobtrusive, and follows the UNIX tradition of single-purpose tools that do one thing well.
+
+**More about pyenv:** https://realpython.com/intro-to-pyenv/#why-use-pyenv
+
+## Virtual environments and pyenv
+
+Virtual environments are a big part of managing Python installations and applications. 
+
+Virtual environments and pyenv are a match made in heaven. pyenv has a wonderful plugin called pyenv-virtualenv that makes working with multiple Python version and multiple virtual environments a breeze. If you’re wondering what the difference is between pyenv, pyenv-virtualenv, and tools like virtualenv or venv, then don’t worry. You’re not alone.
+
+Here’s what you need to know:
+
+* **pyenv** manages multiple versions of Python itself.
+* **virtualenv/venv** manages virtual environments for a specific Python version.
+* **pyenv-virtualenv** manages virtual environments for across varying versions of Python.
 
 # Python package management
 
