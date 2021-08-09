@@ -6,6 +6,7 @@ Sandbox repo for playing with python
 - [Python version management](#Python-Version-Management)
     * [Pyenv](#pyenv)
     * [Virtual environments and pyenv](#Virtual-environments-and-pyenv)
+- [Python virtual environments](#Python-Virtual-Environments)
 - [Python package management](#Python-package-management)
     * [Pip](#pip)
     * [Pipenv](#Pipenv)
@@ -26,6 +27,13 @@ Sandbox repo for playing with python
     * [Strings](#strings)
     * [How objects are passed to functions](#How-objects-are-passed-to-functions)
 
+# Python virtual environments
+
+At its core, the main purpose of Python virtual environments is to create an isolated environment for Python projects. This means that each project can have its own dependencies, regardless of what dependencies every other project has.
+
+The great thing about this is that there are no limits to the number of environments you can have since they’re just directories containing a few scripts. Plus, they’re easily created using the virtualenv or pyenv command line tools.
+
+**More about virtual environments:** https://realpython.com/python-virtual-environments-a-primer/
 
 # Python version management
 
