@@ -13,27 +13,8 @@ Sandbox repo for playing with python
     * [Poetry](#poetry)
     * [Conda](#conda)
     * [Highlevel comparison](#Highlevel-comparison)
-- [Core data types in Python](#core-data-types-in-python)
-    * [Numbers](#numbers)
-    * [Boolean](#boolean)
-    * [Strings](#strings)
-    * [Lists](#lists)
-    * [Tuple](#tuple)
-    * [Set](#set)
-    * [Dictionary](#dictionary)
-- [Mutable vs Immutable Objects in Python](#mutable-vs-immutable-objects-in-python)
-    * [ID and TYPE](#id-and-type)
-    * [Mutable and Immutable Objects](#Mutable-and-Immutable-Objects)
-    * [Strings](#strings)
-    * [How objects are passed to functions](#How-objects-are-passed-to-functions)
+- [Python data structures](#Python-data-structures)
 
-# Python virtual environments
-
-At its core, the main purpose of Python virtual environments is to create an isolated environment for Python projects. This means that each project can have its own dependencies, regardless of what dependencies every other project has.
-
-The great thing about this is that there are no limits to the number of environments you can have since they’re just directories containing a few scripts. Plus, they’re easily created using the virtualenv or pyenv command line tools.
-
-**More about virtual environments:** https://realpython.com/python-virtual-environments-a-primer/
 
 # Python version management
 
@@ -58,6 +39,16 @@ Here’s what you need to know:
 * **pyenv** manages multiple versions of Python itself.
 * **virtualenv/venv** manages virtual environments for a specific Python version.
 * **pyenv-virtualenv** manages virtual environments for across varying versions of Python.
+
+
+# Python virtual environments
+
+At its core, the main purpose of Python virtual environments is to create an isolated environment for Python projects. This means that each project can have its own dependencies, regardless of what dependencies every other project has.
+
+The great thing about this is that there are no limits to the number of environments you can have since they’re just directories containing a few scripts. Plus, they’re easily created using the virtualenv or pyenv command line tools.
+
+**More about virtual environments:** https://realpython.com/python-virtual-environments-a-primer/
+
 
 # Python package management
 
@@ -106,6 +97,36 @@ Conda is a package, dependency, and environment management system that could be 
 https://ahmed-nafies.medium.com/pip-pipenv-poetry-or-conda-7d2398adbac9
 
 
+# Python data structures
+
+Data structures are the fundamental constructs around which you build your programs. Each data structure provides a particular way of organizing data so it can be accessed efficiently, depending on your use case. Python ships with an extensive set of data structures in its standard library.
+
+## Dictionaries
+
+In Python, dictionaries (or dicts for short) are a central data structure. Dicts store an arbitrary number of objects, each identified by a unique dictionary key. Dictionaries are also often called maps, hashmaps, lookup tables, or associative arrays. They allow for the efficient lookup, insertion, and deletion of any object associated with a given key.
+
+Dictionaries are:
+
+* Mutable.
+* Dynamic. They can grow and shrink as needed.
+* Can be nested.  A dictionary can contain another dictionary. A dictionary can also contain a list.
+* Dictionary elements are accessed via keys.
+
+Python features a robust dictionary implementation that’s built directly into the core language: the **dict** data type.
+
+* **More about dict data type:** https://realpython.com/python-dicts/#
+* **Code examples:** https://github.com/rgederin/python-sandbox/blob/master/python_code/src/dictionary_core.py
+
+Python’s dictionaries are indexed by keys that can be of any hashable type. A hashable object has a hash value that never changes during its lifetime (see __hash__), and it can be compared to other objects (see __eq__). Hashable objects that compare as equal must have the same hash value.
+
+Immutable types like strings and numbers are hashable and work well as dictionary keys. You can also use tuple objects as dictionary keys as long as they contain only hashable types themselves.
+
+Besides plain **dict** objects, Python’s standard library also includes a number of specialized dictionary implementations. These specialized dictionaries are all based on the built-in dictionary class (and share its performance characteristics) but also include some additional convenience features:
+
+* **collections.OrderedDict**: Remember the Insertion Order of Keys (https://realpython.com/python-ordereddict/)
+* **collections.defaultdict**: Return Default Values for Missing Keys (https://docs.python.org/3/library/collections.html#collections.defaultdict)
+* **collections.ChainMap**: Search Multiple Dictionaries as a Single Mapping (https://docs.python.org/3/library/collections.html#collections.ChainMap)
+* **types.MappingProxyType**: A Wrapper for Making Read-Only Dictionaries (https://docs.python.org/3/library/types.html#types.MappingProxyType)
 
 
 
@@ -121,13 +142,12 @@ https://ahmed-nafies.medium.com/pip-pipenv-poetry-or-conda-7d2398adbac9
 
 
 
-
-
-
-
-
-
-
+##############
+##############
+##############
+##############
+##############
+##############
 
 
 
