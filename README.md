@@ -121,7 +121,7 @@ The important characteristics of Python lists are as follows:
 * Lists are mutable.
 * Lists are dynamic.
 
-* **List code snippets:** https://github.com/rgederin/python-sandbox/blob/master/python_code/src/collections/list.py
+* **List code snippets:** https://github.com/rgederin/python-sandbox/blob/master/python-code/src/collections/list.py
 
 ![data](https://github.com/rgederin/python-sandbox/blob/master/img/pl.jpeg)
 
@@ -142,7 +142,7 @@ Dictionaries are:
 Python features a robust dictionary implementation that’s built directly into the core language: the **dict** data type.
 
 * **More about dict data type:** https://realpython.com/python-dicts/#
-* **Dictionaries code snippets:** https://github.com/rgederin/python-sandbox/blob/master/python_code/src/collections/dictationary.py
+* **Dictionaries code snippets:** https://github.com/rgederin/python-sandbox/blob/master/python-code/src/collections/list.py
 
 Python’s dictionaries are indexed by keys that can be of any hashable type. A hashable object has a hash value that never changes during its lifetime (see __hash__), and it can be compared to other objects (see __eq__). Hashable objects that compare as equal must have the same hash value.
 
