@@ -15,6 +15,7 @@ Sandbox repo for playing with python
     * [Highlevel comparison](#Highlevel-comparison)
 - [Python data structures](#Python-data-structures)
     * [List](#list)
+    * [Tuple](#tuple)
     * [Dictionaries](#Dictionaries)
 
 
@@ -127,6 +128,31 @@ The important characteristics of Python lists are as follows:
 
 ![data](https://github.com/rgederin/python-sandbox/blob/master/img/pl.png)
 
+## Tuple
+
+Just like lists, tuples are part of the Python core language. Unlike lists, however, Python’s tuple objects are immutable. This means elements can’t be added or removed dynamically—all elements in a tuple must be defined at creation time.
+
+Everything you’ve learned about lists—they are ordered, they can contain arbitrary objects, they can be indexed and sliced, they can be nested—is true of tuples as well. But they can’t be modified.
+
+**Tuple has the following characteristics**
+
+* Ordered: Tuples are part of sequence data types, which means they hold the order of the data insertion. It maintains the index value for each item.
+* Unchangeable: Tuples are unchangeable, which means that we cannot add or delete items to the tuple after creation.
+* Heterogeneous: Tuples are a sequence of data of different data types (like integer, float, list, string, etc;) and can be accessed through indexing and slicing.
+* Contains Duplicates: Tuples can contain duplicates, which means they can have items with the same value.
+
+**Why use a tuple instead of a list?**
+
+* Program execution is faster when manipulating a tuple than it is for the equivalent list. (This is probably not going to be noticeable when the list or tuple is small.)
+
+* Sometimes you don’t want data to be modified. If the values in the collection are meant to remain constant for the life of the program, using a tuple instead of a list guards against accidental modification.
+
+* There is another Python data type that you will encounter shortly called a dictionary, which requires as one of its components a value that is of an immutable type. A tuple can be used for this purpose, whereas a list can’t be.
+
+![data](https://github.com/rgederin/python-sandbox/blob/master/img/tuple.jpeg)
+
+* **Tuple code snippets:** https://github.com/rgederin/python-sandbox/blob/master/python-code/src/collections/tuple.py
+
 
 ## Dictionaries
 
@@ -147,6 +173,8 @@ Python features a robust dictionary implementation that’s built directly into 
 Python’s dictionaries are indexed by keys that can be of any hashable type. A hashable object has a hash value that never changes during its lifetime (see __hash__), and it can be compared to other objects (see __eq__). Hashable objects that compare as equal must have the same hash value.
 
 Immutable types like strings and numbers are hashable and work well as dictionary keys. You can also use tuple objects as dictionary keys as long as they contain only hashable types themselves.
+
+![data](https://github.com/rgederin/python-sandbox/blob/master/img/dp.jpeg)
 
 Besides plain **dict** objects, Python’s standard library also includes a number of specialized dictionary implementations. These specialized dictionaries are all based on the built-in dictionary class (and share its performance characteristics) but also include some additional convenience features:
 
