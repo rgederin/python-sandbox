@@ -14,6 +14,9 @@ Sandbox repo for playing with python
     * [Conda](#conda)
     * [Highlevel comparison](#Highlevel-comparison)
 - [Python data structures](#Python-data-structures)
+    * [Array data structures](#Array-data-structures)
+    * [Arrays](#arrays) 
+    * [Arrays summary](#arrays-summary)
     * [List](#list)
     * [Tuple](#tuple)
     * [Dictionaries](#Dictionaries)
@@ -104,6 +107,19 @@ https://ahmed-nafies.medium.com/pip-pipenv-poetry-or-conda-7d2398adbac9
 
 Data structures are the fundamental constructs around which you build your programs. Each data structure provides a particular way of organizing data so it can be accessed efficiently, depending on your use case. Python ships with an extensive set of data structures in its standard library.
 
+## Array data structures
+
+An array is a fundamental data structure available in most programming languages, and it has a wide range of uses across different algorithms.
+
+Python includes several array-like data structures in its standard library that each have slightly different characteristics:
+
+* list: Mutable Dynamic Arrays
+* tuple: Immutable Containers
+* array.array: Basic Typed Arrays
+* str: Immutable Arrays of Unicode Characters
+* bytes: Immutable Arrays of Single Bytes
+* bytearray: Mutable Arrays of Single Bytes
+
 
 ## List
 
@@ -153,6 +169,60 @@ Everything you’ve learned about lists—they are ordered, they can contain arb
 
 * **Tuple code snippets:** https://github.com/rgederin/python-sandbox/blob/master/python-code/src/collections/tuple.py
 
+## Arrays
+
+### array.array: Basic Typed Arrays
+
+Python’s array module provides space-efficient storage of basic C-style data types like bytes, 32-bit integers, floating-point numbers, and so on.
+
+Arrays created with the array.array class are mutable and behave similarly to lists except for one important difference: they’re typed arrays constrained to a single data type.
+
+Because of this constraint, array.array objects with many elements are more space efficient than lists and tuples. The elements stored in them are tightly packed, and this can be useful if you need to store many elements of the same type.
+
+Also, arrays support many of the same methods as regular lists, and you might be able to use them as a drop-in replacement without requiring other changes to your application code.
+
+```
+>>> import array
+>>> arr = array.array("f", (1.0, 1.5, 2.0, 2.5))
+>>> arr[1]
+1.5
+```
+
+### str: Immutable Arrays of Unicode Characters
+
+Python 3.x uses str objects to store textual data as immutable sequences of Unicode characters. Practically speaking, that means a str is an immutable array of characters. Oddly enough, it’s also a recursive data structure—each character in a string is itself a str object of length 1.
+
+String objects are space efficient because they’re tightly packed and they specialize in a single data type. If you’re storing Unicode text, then you should use a string.
+
+Because strings are immutable in Python, modifying a string requires creating a modified copy. 
+
+### bytes: Immutable Arrays of Single Bytes
+
+bytes objects are immutable sequences of single bytes, or integers in the range 0 ≤ x ≤ 255. Conceptually, bytes objects are similar to str objects, and you can also think of them as immutable arrays of bytes.
+
+Like strings, bytes have their own literal syntax for creating objects and are space efficient. bytes objects are immutable, but unlike strings, there’s a dedicated mutable byte array data type called bytearray that they can be unpacked into.
+
+### bytearray: Mutable Arrays of Single Bytes
+
+The bytearray type is a mutable sequence of integers in the range 0 ≤ x ≤ 255. The bytearray object is closely related to the bytes object, with the main difference being that a bytearray can be modified freely—you can overwrite elements, remove existing elements, or add new ones. The bytearray object will grow and shrink accordingly.
+
+A bytearray can be converted back into immutable bytes objects, but this involves copying the stored data in full—a slow operation taking O(n) time.
+
+## Arrays summary: 
+
+There are a number of built-in data structures you can choose from when it comes to implementing arrays in Python. In this section, you’ve focused on core language features and data structures included in the standard library.
+
+If you’re willing to go beyond the Python standard library, then third-party packages like NumPy and pandas offer a wide range of fast array implementations for scientific computing and data science.
+
+* If you want to restrict yourself to the array data structures included with Python, then here are a few guidelines:
+* If you need to store arbitrary objects, potentially with mixed data types, then use a list or a tuple, depending on whether or not you want an immutable data structure.
+* If you have numeric (integer or floating-point) data and tight packing and performance is important, then try out array.array.
+* If you have textual data represented as Unicode characters, then use Python’s built-in str. If you need a mutable string-like data structure, then use a list of characters.
+* If you want to store a contiguous block of bytes, then use the immutable bytes type or a bytearray if you need a mutable data structure.
+
+In most cases, I like to start out with a simple list. I’ll only specialize later on if performance or storage space becomes an issue. Most of the time, using a general-purpose array data structure like list gives you the fastest development speed and the most programming convenience.
+
+I’ve found that this is usually much more important in the beginning than trying to squeeze out every last drop of performance right from the start.
 
 ## Dictionaries
 
