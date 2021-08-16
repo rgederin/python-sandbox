@@ -20,6 +20,7 @@ Sandbox repo for playing with python
     * [List](#list)
     * [Tuple](#tuple)
     * [Dictionaries](#Dictionaries)
+    * [Sets](#sets)
 
 
 # Python version management
@@ -252,3 +253,49 @@ Besides plain **dict** objects, Python’s standard library also includes a numb
 * **collections.defaultdict**: Return Default Values for Missing Keys (https://docs.python.org/3/library/collections.html#collections.defaultdict)
 * **collections.ChainMap**: Search Multiple Dictionaries as a Single Mapping (https://docs.python.org/3/library/collections.html#collections.ChainMap)
 * **types.MappingProxyType**: A Wrapper for Making Read-Only Dictionaries (https://docs.python.org/3/library/types.html#types.MappingProxyType)
+
+## Sets
+
+A set is an unordered collection of objects that doesn’t allow duplicate elements. Typically, sets are used to quickly test a value for membership in the set, to insert or delete new values from a set, and to compute the union or intersection of two sets.
+
+In a proper set implementation, membership tests are expected to run in fast O(1) time. Union, intersection, difference, and subset operations should take O(n) time on average. The set implementations included in Python’s standard library follow these performance characteristics.
+
+
+### set: Your Go-To Set
+
+The set type is the built-in set implementation in Python. It’s mutable and allows for the dynamic insertion and deletion of elements.
+
+Python’s sets are backed by the dict data type and share the same performance characteristics. Any hashable object can be stored in a set.
+
+Python’s built-in set type has the following characteristics:
+
+* Sets are unordered.
+* Set elements are unique. Duplicate elements are not allowed.
+* A set itself may be modified, but the elements contained in the set must be of an immutable type.
+
+![data](https://github.com/rgederin/python-sandbox/blob/master/img/sets.jpeg)
+
+**More about set data type:** https://realpython.com/python-sets/
+
+### frozenset: Immutable Sets
+
+The frozenset class implements an immutable version of set that can’t be changed after it’s been constructed.
+
+**More about frozenset data type:** https://realpython.com/python-sets/#frozen-sets 
+
+### collections.Counter: Multisets
+
+The collections.Counter class in the Python standard library implements a multiset, or bag, type that allows elements in the set to have more than one occurrence.
+
+This is useful if you need to keep track of not only if an element is part of a set, but also how many times it’s included in the set.
+
+**More about collections.Counter data type:** https://docs.python.org/3/library/collections.html#collections.Counter
+
+### Sets and Multisets in Python: Summary
+
+Sets are another useful and commonly used data structure included with Python and its standard library. Here are a few guidelines for deciding which one to use:
+
+* If you need a mutable set, then use the built-in set type.
+* If you need hashable objects that can be used as dictionary or set keys, then use a frozenset.
+* If you need a multiset, or bag, data structure, then use collections.Counter.
+
