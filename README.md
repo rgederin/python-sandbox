@@ -21,6 +21,8 @@ Sandbox repo for playing with python
     * [Tuple](#tuple)
     * [Dictionaries](#Dictionaries)
     * [Sets](#sets)
+    * [Stacks (LIFO)](#stack)
+    * [Linked Lists](#linked)
 
 
 # Python version management
@@ -298,4 +300,109 @@ Sets are another useful and commonly used data structure included with Python an
 * If you need a mutable set, then use the built-in set type.
 * If you need hashable objects that can be used as dictionary or set keys, then use a frozenset.
 * If you need a multiset, or bag, data structure, then use collections.Counter.
+
+## Stacks (LIFO)
+
+A stack is a collection of objects that supports fast Last-In/First-Out (LIFO) semantics for inserts and deletes. Unlike lists or arrays, stacks typically don’t allow for random access to the objects they contain. The insert and delete operations are also often called push and pop.
+
+Python ships with several stack implementations that each have slightly different characteristics. Let’s take a look at them and compare their characteristics.
+
+**More about stack data types:** https://realpython.com/how-to-implement-python-stack/ 
+
+### list: Simple, Built-In Stacks
+Python’s built-in list type makes a decent stack data structure as it supports push and pop operations in amortized O(1) time.
+
+https://docs.python.org/3/tutorial/datastructures.html#using-lists-as-stacks
+
+Python’s lists are implemented as dynamic arrays internally, which means they occasionally need to resize the storage space for elements stored in them when elements are added or removed. The list over-allocates its backing storage so that not every push or pop requires resizing. As a result, you get an amortized O(1) time complexity for these operations.
+
+The downside is that this makes their performance less consistent than the stable O(1) inserts and deletes provided by a linked list–based implementation (as you’ll see below with collections.deque). On the other hand, lists do provide fast O(1) time random access to elements on the stack, and this can be an added benefit.
+
+There’s an important performance caveat that you should be aware of when using lists as stacks: To get the amortized O(1) performance for inserts and deletes, new items must be added to the end of the list with the append() method and removed again from the end using pop(). For optimum performance, stacks based on Python lists should grow towards higher indexes and shrink towards lower ones.
+
+Adding and removing from the front is much slower and takes O(n) time, as the existing elements must be shifted around to make room for the new element. This is a performance antipattern that you should avoid as much as possible
+
+```
+>>> s = []
+>>> s.append("eat")
+>>> s.append("sleep")
+>>> s.append("code")
+
+>>> s
+['eat', 'sleep', 'code']
+
+>>> s.pop()
+'code'
+>>> s.pop()
+'sleep'
+>>> s.pop()
+'eat'
+
+>>> s.pop()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+IndexError: pop from empty list
+```
+
+### collections.deque: Fast and Robust Stacks
+
+The deque class implements a double-ended queue that supports adding and removing elements from either end in O(1) time (non-amortized). Because deques support adding and removing elements from either end equally well, they can serve both as queues and as stacks.
+
+Python’s deque objects are implemented as doubly-linked lists, which gives them excellent and consistent performance for inserting and deleting elements but poor O(n) performance for randomly accessing elements in the middle of a stack.
+
+Overall, collections.deque is a great choice if you’re looking for a stack data structure in Python’s standard library that has the performance characteristics of a linked-list implementation.
+
+```
+from collections import deque
+>>> s = deque()
+>>> s.append("eat")
+>>> s.append("sleep")
+>>> s.append("code")
+
+>>> s
+deque(['eat', 'sleep', 'code'])
+
+>>> s.pop()
+'code'
+>>> s.pop()
+'sleep'
+>>> s.pop()
+'eat'
+
+>>> s.pop()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+IndexError: pop from an empty deque
+```
+
+### queue.LifoQueue: Locking Semantics for Parallel Computing
+
+The LifoQueue stack implementation in the Python standard library is synchronized and provides locking semantics to support multiple concurrent producers and consumers.
+
+Besides LifoQueue, the queue module contains several other classes that implement multi-producer, multi-consumer queues that are useful for parallel computing.
+
+Depending on your use case, the locking semantics might be helpful, or they might just incur unneeded overhead. In this case, you’d be better off using a list or a deque as a general-purpose stack.
+
+### Stack Implementations in Python: Summary
+
+As you’ve seen, Python ships with several implementations for a stack data structure. All of them have slightly different characteristics as well as performance and usage trade-offs.
+
+If you’re not looking for parallel processing support (or if you don’t want to handle locking and unlocking manually), then your choice comes down to the built-in list type or collections.deque. The difference lies in the data structure used behind the scenes and overall ease of use.
+
+list is backed by a dynamic array, which makes it great for fast random access but requires occasional resizing when elements are added or removed.
+
+The list over-allocates its backing storage so that not every push or pop requires resizing, and you get an amortized O(1) time complexity for these operations. But you do need to be careful to only insert and remove items using append() and pop(). Otherwise, performance slows down to O(n).
+
+collections.deque is backed by a doubly-linked list, which optimizes appends and deletes at both ends and provides consistent O(1) performance for these operations. Not only is its performance more stable, the deque class is also easier to use because you don’t have to worry about adding or removing items from the wrong end.
+
+In summary, collections.deque is an excellent choice for implementing a stack (LIFO queue) in Python.
+
+## Linked Lists
+
+Linked lists are an ordered collection of objects. So what makes them different from normal lists? Linked lists differ from lists in the way that they store elements in memory. While lists use a contiguous memory block to store references to their data, linked lists store references as part of their own elements.
+
+https://realpython.com/linked-lists-python/#understanding-linked-lists
+
+
+
 
