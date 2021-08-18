@@ -18,12 +18,14 @@ Sandbox repo for playing with python
     * [Arrays](#arrays) 
     * [Arrays summary](#arrays-summary)
     * [List](#list)
+    * [Linked Lists](#linked-lists)
     * [Tuple](#tuple)
     * [Dictionaries](#Dictionaries)
     * [Sets](#sets)
-    * [Stacks (LIFO)](#stack)
-    * [Linked Lists](#linked)
-
+    * [Stacks (LIFO)](#Stacks-(LIFO))
+    * [Queues (FIFO)](#Queues-(FIFO))
+    * [Priority Queues](#Priority-Queues)
+    
 
 # Python version management
 
@@ -146,6 +148,14 @@ The important characteristics of Python lists are as follows:
 ![data](https://github.com/rgederin/python-sandbox/blob/master/img/pl.jpeg)
 
 ![data](https://github.com/rgederin/python-sandbox/blob/master/img/pl.png)
+
+
+## Linked Lists
+
+Linked lists are an ordered collection of objects. So what makes them different from normal lists? Linked lists differ from lists in the way that they store elements in memory. While lists use a contiguous memory block to store references to their data, linked lists store references as part of their own elements.
+
+https://realpython.com/linked-lists-python/#understanding-linked-lists
+
 
 ## Tuple
 
@@ -397,12 +407,127 @@ collections.deque is backed by a doubly-linked list, which optimizes appends and
 
 In summary, collections.deque is an excellent choice for implementing a stack (LIFO queue) in Python.
 
-## Linked Lists
 
-Linked lists are an ordered collection of objects. So what makes them different from normal lists? Linked lists differ from lists in the way that they store elements in memory. While lists use a contiguous memory block to store references to their data, linked lists store references as part of their own elements.
+## Queues (FIFO)
 
-https://realpython.com/linked-lists-python/#understanding-linked-lists
+A queue is a collection of objects that supports fast FIFO semantics for inserts and deletes. The insert and delete operations are sometimes called enqueue and dequeue. Unlike lists or arrays, queues typically don’t allow for random access to the objects they contain.
 
+With a queue, you remove the item least recently added (FIFO) but with a stack, you remove the item most recently added (LIFO).
 
+Performance-wise, a proper queue implementation is expected to take O(1) time for insert and delete operations. These are the two main operations performed on a queue, and in a correct implementation, they should be fast.
 
+Python ships with several queue implementations that each have slightly different characteristics. Let’s review them.
+
+### list: Terribly Sloooow Queues
+
+It’s possible to use a regular list as a queue, but this is not ideal from a performance perspective. Lists are quite slow for this purpose because inserting or deleting an element at the beginning requires shifting all the other elements by one, requiring O(n) time.
+
+https://docs.python.org/3/tutorial/datastructures.html#using-lists-as-queues
+
+### collections.deque: Fast and Robust Queues
+
+The deque class implements a double-ended queue that supports adding and removing elements from either end in O(1) time (non-amortized). Because deques support adding and removing elements from either end equally well, they can serve both as queues and as stacks.
+
+Python’s deque objects are implemented as doubly-linked lists. This gives them excellent and consistent performance for inserting and deleting elements, but poor O(n) performance for randomly accessing elements in the middle of the stack.
+
+As a result, collections.deque is a great default choice if you’re looking for a queue data structure in Python’s standard library.
+
+```
+>>> from collections import deque
+>>> q = deque()
+>>> q.append("eat")
+>>> q.append("sleep")
+>>> q.append("code")
+
+>>> q
+deque(['eat', 'sleep', 'code'])
+
+>>> q.popleft()
+'eat'
+>>> q.popleft()
+'sleep'
+>>> q.popleft()
+'code'
+
+>>> q.popleft()
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+IndexError: pop from an empty deque
+```
+
+### queue.Queue: Locking Semantics for Parallel Computing
+
+The queue.Queue implementation in the Python standard library is synchronized and provides locking semantics to support multiple concurrent producers and consumers.
+
+The queue module contains several other classes implementing multi-producer, multi-consumer queues that are useful for parallel computing.
+
+Depending on your use case, the locking semantics might be helpful or just incur unneeded overhead. In this case, you’d be better off using collections.deque as a general-purpose queue.
+
+### multiprocessing.Queue: Shared Job Queues
+
+multiprocessing.Queue is a shared job queue implementation that allows queued items to be processed in parallel by multiple concurrent workers. Process-based parallelization is popular in CPython due to the global interpreter lock (GIL) that prevents some forms of parallel execution on a single interpreter process.
+
+As a specialized queue implementation meant for sharing data between processes, multiprocessing.Queue makes it easy to distribute work across multiple processes in order to work around the GIL limitations. This type of queue can store and transfer any pickleable object across process boundaries.
+
+### Queues in Python: Summary
+
+Python includes several queue implementations as part of the core language and its standard library.
+
+list objects can be used as queues, but this is generally not recommended due to slow performance.
+
+If you’re not looking for parallel processing support, then the implementation offered by collections.deque is an excellent default choice for implementing a FIFO queue data structure in Python. It provides the performance characteristics you’d expect from a good queue implementation and can also be used as a stack (LIFO queue).
+
+## Priority Queues
+
+A priority queue is a container data structure that manages a set of records with totally-ordered keys to provide quick access to the record with the smallest or largest key in the set.
+
+You can think of a priority queue as a modified queue. Instead of retrieving the next element by insertion time, it retrieves the highest-priority element. The priority of individual elements is decided by the order applied to their keys.
+
+Priority queues are commonly used for dealing with scheduling problems. For example, you might use them to give precedence to tasks with higher urgency.
+
+### list: Manually Sorted Queues
+
+You can use a sorted list to quickly identify and delete the smallest or largest element. The downside is that inserting new elements into a list is a slow O(n) operation.
+
+While the insertion point can be found in O(log n) time using bisect.insort in the standard library, this is always dominated by the slow insertion step.
+
+Maintaining the order by appending to the list and re-sorting also takes at least O(n log n) time. Another downside is that you must manually take care of re-sorting the list when new elements are inserted. It’s easy to introduce bugs by missing this step, and the burden is always on you, the developer.
+
+This means sorted lists are only suitable as priority queues when there will be few insertions.
+
+### heapq: List-Based Binary Heaps
+
+heapq is a binary heap implementation usually backed by a plain list, and it supports insertion and extraction of the smallest element in O(log n) time.
+
+This module is a good choice for implementing priority queues in Python. Since heapq technically provides only a min-heap implementation, extra steps must be taken to ensure sort stability and other features typically expected from a practical priority queue
+
+### queue.PriorityQueue: Beautiful Priority Queues
+
+queue.PriorityQueue uses heapq internally and shares the same time and space complexities. The difference is that PriorityQueue is synchronized and provides locking semantics to support multiple concurrent producers and consumers.
+
+Depending on your use case, this might be helpful, or it might just slow your program down slightly. In any case, you might prefer the class-based interface provided by PriorityQueue over the function-based interface provided by heapq:
+
+```
+>>> from queue import PriorityQueue
+>>> q = PriorityQueue()
+>>> q.put((2, "code"))
+>>> q.put((1, "eat"))
+>>> q.put((3, "sleep"))
+
+>>> while not q.empty():
+...     next_item = q.get()
+...     print(next_item)
+...
+(1, 'eat')
+(2, 'code')
+(3, 'sleep')
+```
+
+### Priority Queues in Python: Summary
+
+Python includes several priority queue implementations ready for you to use.
+
+queue.PriorityQueue stands out from the pack with a nice object-oriented interface and a name that clearly states its intent. It should be your preferred choice.
+
+If you’d like to avoid the locking overhead of queue.PriorityQueue, then using the heapq module directly is also a good option.
 
