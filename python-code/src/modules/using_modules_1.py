@@ -1,4 +1,6 @@
 import math
+# import <module_name>[, <module_name> ...]
+
 print(math)
 print(math.PI)
 
