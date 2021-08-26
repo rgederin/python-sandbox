@@ -25,7 +25,9 @@ Sandbox repo for playing with python
     * [Stacks (LIFO)](#Stacks-(LIFO))
     * [Queues (FIFO)](#Queues-(FIFO))
     * [Priority Queues](#Priority-Queues)
-    
+- [Python Modules and Packages](#Python-Modules-and-Packages)
+    * [Modules](#Modules)
+    * [Packages](#Packages)
 
 # Python version management
 
@@ -530,4 +532,76 @@ Python includes several priority queue implementations ready for you to use.
 queue.PriorityQueue stands out from the pack with a nice object-oriented interface and a name that clearly states its intent. It should be your preferred choice.
 
 If you’d like to avoid the locking overhead of queue.PriorityQueue, then using the heapq module directly is also a good option.
+
+
+# Python Modules and Packages
+
+This article explores Python modules and Python packages, two mechanisms that facilitate modular programming.
+
+Modular programming refers to the process of breaking a large, unwieldy programming task into separate, smaller, more manageable subtasks or modules. Individual modules can then be cobbled together like building blocks to create a larger application.
+
+There are several advantages to modularizing code in a large application:
+
+* **Simplicity:** Rather than focusing on the entire problem at hand, a module typically focuses on one relatively small portion of the problem. If you’re working on a single module, you’ll have a smaller problem domain to wrap your head around. This makes development easier and less error-prone.
+
+* **Maintainability:** Modules are typically designed so that they enforce logical boundaries between different problem domains. If modules are written in a way that minimizes interdependency, there is decreased likelihood that modifications to a single module will have an impact on other parts of the program. (You may even be able to make changes to a module without having any knowledge of the application outside that module.) This makes it more viable for a team of many programmers to work collaboratively on a large application.
+
+**Reusability:** Functionality defined in a single module can be easily reused (through an appropriately defined interface) by other parts of the application. This eliminates the need to duplicate code.
+
+**Scoping:** Modules typically define a separate namespace, which helps avoid collisions between identifiers in different areas of a program. (One of the tenets in the Zen of Python is Namespaces are one honking great idea—let’s do more of those!)
+
+Functions, modules and packages are all constructs in Python that promote code modularization.
+
+## Modules
+
+There are actually three different ways to define a module in Python:
+
+* A module can be written in Python itself.
+* A module can be written in C and loaded dynamically at run-time, like the re (regular expression) module.
+* A built-in module is intrinsically contained in the interpreter, like the itertools module.
+
+A module’s contents are accessed the same way in all three cases: with the import statement.
+
+math module:
+
+```
+def plus(a, b):
+    print("sum two elements")
+    return a + b
+
+
+PI = 3.14
+
+fib_numbers = (0, 1, 1, 2, 3, 5, 8, 13)
+```
+
+And simple usage:
+
+```
+import math
+# import <module_name>[, <module_name> ...]
+
+print(math)
+print(math.PI)
+
+res = math.plus(5, 6)
+print(res)
+
+print(math.fib_numbers)
+```
+
+**More about modules:** https://realpython.com/python-modules-packages/#python-modules-overview
+
+## Packages
+
+Suppose you have developed a very large application that includes many modules. As the number of modules grows, it becomes difficult to keep track of them all if they are dumped into one location. This is particularly so if they have similar names or functionality. You might wish for a means of grouping and organizing them.
+
+Packages allow for a hierarchical structuring of the module namespace using dot notation. In the same way that modules help avoid collisions between global variable names, packages help avoid collisions between module names.
+
+Creating a package is quite straightforward, since it makes use of the operating system’s inherent hierarchical file structure. 
+
+![data](https://github.com/rgederin/python-sandbox/blob/master/img/pkg.png)
+
+**More about packages:** https://realpython.com/python-modules-packages/#python-packages
+
 
