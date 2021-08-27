@@ -28,7 +28,9 @@ Sandbox repo for playing with python
 - [Python Modules and Packages](#Python-Modules-and-Packages)
     * [Modules](#Modules)
     * [Packages](#Packages)
-
+- [OOP in Python](#OOP-in-Python)
+    * [Basics](#basics
+    )
 # Python version management
 
 macOS and most Unix operating systems come with a version of Python installed by default. This is often called the system Python. The system Python works just fine, but it’s usually out of date. As of this writing, macOS High Sierra still ships with Python 2.7.10 as the system Python.
@@ -605,3 +607,109 @@ Creating a package is quite straightforward, since it makes use of the operating
 **More about packages:** https://realpython.com/python-modules-packages/#python-packages
 
 
+# OOP in Python
+
+Object-oriented programming is a programming paradigm that provides a means of structuring programs so that properties and behaviors are bundled into individual objects.
+
+For instance, an object could represent a person with properties like a name, age, and address and behaviors such as walking, talking, breathing, and running. Or it could represent an email with properties like a recipient list, subject, and body and behaviors like adding attachments and sending.
+
+Put another way, object-oriented programming is an approach for modeling concrete, real-world things, like cars, as well as relations between things, like companies and employees, students and teachers, and so on. OOP models real-world entities as software objects that have some data associated with them and can perform certain functions.
+
+## Basics
+
+Classes are used to create user-defined data structures. Classes define functions called methods, which identify the behaviors and actions that an object created from the class can perform with its data.
+
+A class is a blueprint for how something should be defined. It doesn’t actually contain any data. The Dog class specifies that a name and an age are necessary for defining a dog, but it doesn’t contain the name or age of any specific dog.
+
+While the class is the blueprint, an instance is an object that is built from a class and contains real data. An instance of the Dog class is not a blueprint anymore. It’s an actual dog with a name, like Miles, who’s four years old.
+
+### Classes and objects
+
+All class definitions start with the class keyword, which is followed by the name of the class and a colon. Any code that is indented below the class definition is considered part of the class’s body.
+
+```
+class Dog:
+    # Class attribute
+    voice = "bark bark"
+
+    # constructor
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    # toString
+    def __str__(self):
+        return f"{self.name} is {self.age} years old dog"
+
+    # instance method
+    def speak(self):
+        print(f"{self.name} says {self.voice}")
+
+
+pluto = Dog("Pluto", 2)
+
+print(pluto.age)
+print(pluto.name)
+print(pluto.voice)
+
+# objects are mutable
+pluto.age = 3
+print(pluto.age)
+
+pluto.speak()
+
+print(pluto)
+```
+
+**More about classes:** https://realpython.com/python3-object-oriented-programming/#define-a-class-in-python
+
+
+### Basic inheritance
+
+Inheritance is the process by which one class takes on the attributes and methods of another. Newly formed classes are called child classes, and the classes that child classes are derived from are called parent classes.
+
+```
+class Dog:
+    species = "Canis familiaris"
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def __str__(self):
+        return f"{self.name} is {self.age} years old"
+
+    def speak(self, sound):
+        return f"{self.name} says {sound}"
+
+
+class JackRussellTerrier(Dog):
+    def speak(self, sound="Arf"):
+        return super().speak(sound)
+
+class Dachshund(Dog):
+    pass
+
+
+class Bulldog(Dog):
+    pass
+
+
+miles = JackRussellTerrier("Miles", 4)
+buddy = Dachshund("Buddy", 9)
+jack = Bulldog("Jack", 3)
+jim = Bulldog("Jim", 5)
+
+print(miles.species)
+print(buddy.name)
+print(jack)
+print(jim.speak("Woof"))
+
+print(type(buddy))
+print(isinstance(buddy, Dog))
+
+print(miles.speak())
+print(miles.speak("grrrrr"))
+```
+
+**More about basic inheritance:** https://realpython.com/python3-object-oriented-programming/#inherit-from-other-classes-in-python 
