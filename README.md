@@ -31,6 +31,7 @@ Sandbox repo for playing with python
 - [OOP in Python](#OOP-in-Python)
     * [Basics](#basics)
     * [Methods](#methods)
+    * [Interfaces](#Interfaces)
 
 # Python version management
 
@@ -761,3 +762,66 @@ This type of method takes neither a self nor a cls parameter (but of course it�
 Therefore a static method can neither modify object state nor class state. Static methods are restricted in what data they can access - and they’re primarily a way to namespace your methods.
 
 **More about different method types:** https://realpython.com/instance-class-and-static-methods-demystified
+
+
+## Interfaces
+
+At a high level, an interface acts as a **blueprint** for designing classes. Like classes, interfaces define methods. Unlike classes, these methods are abstract. An **abstract method** is one that the interface simply defines. It doesn’t implement the methods. This is done by classes, which then **implement** the interface and give concrete meaning to the interface’s abstract methods.
+
+**More about python interfaces:** https://realpython.com/python-interface/#python-interface-overview
+
+Below you could find example formal interface implementation in Python using ABCMeta metaclass and abstractmethod decorator from abc module.
+
+```
+import abc
+
+
+class FormalParserInterface(metaclass=abc.ABCMeta):
+    @classmethod
+    def __subclasshook__(cls, subclass):
+        return (hasattr(subclass, 'load_data_source') and
+                callable(subclass.load_data_source) and
+                hasattr(subclass, 'extract_text') and
+                callable(subclass.extract_text) or
+                NotImplemented)
+
+    @abc.abstractmethod
+    def load_data_source(self, path: str, file_name: str):
+        """Load in the data set"""
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def extract_text(self, full_file_path: str):
+        """Extract text from the data set"""
+        raise NotImplementedError
+
+
+class PdfParserNew(FormalParserInterface):
+    """Extract text from a PDF."""
+
+    def load_data_source(self, path: str, file_name: str) -> str:
+        """Overrides FormalParserInterface.load_data_source()"""
+        pass
+
+    def extract_text(self, full_file_path: str) -> dict:
+        """Overrides FormalParserInterface.extract_text()"""
+        pass
+
+
+class EmlParserNew(FormalParserInterface):
+    """Extract text from an email."""
+
+    def load_data_source(self, path: str, file_name: str) -> str:
+        """Overrides FormalParserInterface.load_data_source()"""
+        pass
+
+    def extract_text_from_email(self, full_file_path: str) -> dict:
+        """A method defined only in EmlParser.
+        Does not override FormalParserInterface.extract_text()
+        """
+        pass
+
+
+pdf_parser = PdfParserNew()
+eml_parser = EmlParserNew()  # TypeError: Can't instantiate abstract class EmlParserNew with abstract method extract_text
+```
