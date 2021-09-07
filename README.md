@@ -28,6 +28,15 @@ Sandbox repo for playing with python
 - [Python Modules and Packages](#Python-Modules-and-Packages)
     * [Modules](#Modules)
     * [Packages](#Packages)
+- [Python functions](#Python-functions)
+    * [Calls and Definition](#Calls-and-Definition)
+    * [Positional Arguments](#Positional-Arguments)
+    * [Keyword Arguments](#Keyword-Arguments)
+    * [Default Arguments](#Default-Arguments)
+    * [Argument types summary](#Argument-types-summary)
+    * [Arguments passing](#Arguments-passing)
+    * [Return data from function](#Return-data-from-function)
+    * [Variable-Length Argument Lists](#Variable-Length-Argument-Lists)
 - [OOP in Python](#OOP-in-Python)
     * [Basics](#basics)
     * [Methods](#methods)
@@ -608,6 +617,183 @@ Creating a package is quite straightforward, since it makes use of the operating
 
 **More about packages:** https://realpython.com/python-modules-packages/#python-packages
 
+# Python functions
+
+![data](https://github.com/rgederin/python-sandbox/blob/master/img/func.jpeg)
+
+**More about functions:** https://realpython.com/defining-your-own-python-function/#functions-in-python
+
+## Calls and Definition
+
+The usual syntax for defining a Python function is as follows:
+
+```
+def <function_name>([<parameters>]):
+    <statement(s)>
+```
+
+Small function example
+
+```
+def f():
+    s = '-- Inside f()'
+    print(s)
+
+print('Before calling f()')
+f()
+print('After calling f()')
+
+Before calling f()
+-- Inside f()
+After calling f(
+```
+
+## Positional Arguments
+
+The most straightforward way to pass arguments to a Python function is with positional arguments (also called required arguments). In the function definition, you specify a comma-separated list of parameters inside the parentheses:
+
+```
+def f(quantity, item, price):
+    print(f'{quantity} {item} cost ${price:.2f}')
+
+
+f(6, 'bananas', 1.77)
+```
+
+Positional args are order-dependent. Next call will compile and works but will be logically incorrect
+
+```
+f('bananas', 1.74, 6)
+```
+
+## Keyword Arguments
+
+When you’re calling a function, you can specify arguments in the form <keyword>=<value>. In that case, each <keyword> must match a parameter in the Python function definition. For example, the previously defined function f() may be called with keyword arguments as follows:
+
+```
+f(price=2.3, quantity=9, item='mango')
+```
+
+You can call a function using both positional and keyword arguments. When positional and keyword arguments are both present, all the positional arguments must come first
+
+```
+f(4, price=44, item='grape')
+```
+
+So, keyword arguments allow flexibility in the order that function arguments are specified, but the number of arguments is still rigid.
+
+## Default Arguments
+
+If a parameter specified in a Python function definition has the form <name>=<value>, then <value> becomes a default value for that parameter. Parameters defined this way are referred to as default or optional parameters. An example of a function definition with default parameters is shown below:
+
+```
+def f(quantity, item, price=100):
+    print(f'{quantity} {item} cost ${price:.2f}')
+
+
+f(1, "vodka")
+```
+
+## Argument types summary
+
+In summary:
+
+* **Positional** arguments must agree in order and number with the parameters declared in the function definition.
+* **Keyword arguments** must agree with declared parameters in number, but they may be specified in arbitrary order.
+* **Default parameters** allow some arguments to be omitted when the function is called.
+
+## Arguments passing
+
+Passing an **immutable object**, like an int, str, tuple, or frozenset, to a Python function acts like **pass-by-value**. The function can’t modify the object in the calling environment.
+
+```
+x = 10
+print("x before function call = ", x)
+
+
+def pass_by_value_function(x):
+    x = x + 200
+    print("x in function call = ", x)
+
+
+pass_by_value_function(x)
+print("x after function call = ", x) # x will not change
+```
+
+Passing a **mutable object** such as a list, dict, or set acts somewhat—but not exactly—like **pass-by-reference**. The function can’t reassign the object wholesale, but it can change items in place within the object, and these changes will be reflected in the calling environment.
+
+```
+l = [1, 2, 3]
+print("l before function call = ", l)
+
+
+def pass_by_ref_function(l):
+    l.append([4, 5, 6])
+    print("l in function call = ", l)
+
+
+pass_by_ref_function(l)
+print("l after function call = ", l) # l will change
+```
+
+## Return data from function
+
+https://realpython.com/defining-your-own-python-function/#the-return-statement
+
+## Variable-Length Argument Lists
+
+* Argument Tuple Packing (*args)
+* Argument Dictionary Packing (**kwargs)
+
+### Argument Tuple Packing
+
+In some cases, when you’re defining a function, you may not know beforehand how many arguments you’ll want it to take. 
+
+When a parameter name in a Python function definition is preceded by an asterisk (*), it indicates argument tuple packing. Any corresponding arguments in the function call are packed into a tuple that the function can refer to by the given parameter name. Here’s an example:
+
+```
+def avg(*args):
+    total = 0
+    for i in args:
+        total += i
+    return total / len(args)
+
+
+print(avg(1, 5, 6))
+print(avg(1, 2, 3, 4, 5))
+```
+
+An analogous operation is available on the other side of the equation in a Python function call. When an argument in a function call is preceded by an asterisk (*), it indicates that the argument is a tuple that should be unpacked and passed to the function as separate values
+
+```
+def f(x, y, z):
+    print(f'x = {x}')
+    print(f'y = {y}')
+    print(f'z = {z}')
+
+
+f(1, 2, 3)
+
+t = ('foo', 'bar', 'baz')
+f(*t)
+```
+
+### Argument Dictionary Packing
+
+Python has a similar operator, the double asterisk (**), which can be used with Python function parameters and arguments to specify dictionary packing and unpacking. Preceding a parameter in a Python function definition by a double asterisk (**) indicates that the corresponding arguments, which are expected to be key=value pairs, should be packed into a dictionary:
+
+```
+def f(**kwargs):
+    print(kwargs)
+    print(type(kwargs))
+    for key, val in kwargs.items():
+        print(key, '->', val)
+
+
+f(foo=1, bar=2, baz=3)
+```
+
+**More about arg and kwarg:** https://realpython.com/python-kwargs-and-args/
 
 # OOP in Python
 

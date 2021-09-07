@@ -43,7 +43,7 @@ def f(quantity, item, price=100):
 
 f(1, "vodka")
 
-#### Argument Passing
+#### Arguments Passing
 
 # Argument passing in Python can be summarized as follows. Passing an immutable object, like an int, str, tuple,
 # or frozenset, to a Python function acts like pass-by-value. The function can’t modify the object in the calling
